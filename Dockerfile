@@ -1,10 +1,10 @@
 FROM node:20-alpine
 
-# Install multimedia tools using Alpine's fast package manager
+# Install multimedia tools using the correct Alpine package names
 RUN apk add --no-cache \
     ffmpeg \
     imagemagick \
-    webp
+    libwebp-tools
 
 WORKDIR /app
 
