@@ -10,11 +10,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# Install packages bypassing dependency strictness
-RUN npm install --quiet --no-audit --no-fund --legacy-peer-deps
+# Explicitly install express for health checks, then download remaining packages
+RUN npm install express --save && npm install --quiet --no-audit --no-fund --legacy-peer-deps
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
