@@ -9,6 +9,11 @@
  * - Baileys Library by @adiwajshing
  * - Pair Code implementation inspired by TechGod143 & DGXEON
  */
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+app.get('/', (req, res) => res.send('Bot is active and healthy!'));
+app.listen(port, () => console.log(`Health check listening on port ${port}`));
 require('./settings')
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
