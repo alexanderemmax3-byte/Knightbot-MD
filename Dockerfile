@@ -1,17 +1,16 @@
-FROM node:20-bullseye
+FROM node:20-alpine
 
-# Install system multimedia dependencies required by the bot
-RUN apt-get update && apt-get install -y \
+# Install multimedia tools using Alpine's fast package manager
+RUN apk add --no-cache \
     ffmpeg \
     imagemagick \
-    webp \
-    && rm -rf /var/lib/apt/lists/*
+    webp
 
 WORKDIR /app
 
 COPY package*.json ./
 
-# Install with safety fallback flags
+# Install packages bypassing dependency strictness
 RUN npm install --quiet --no-audit --no-fund --legacy-peer-deps
 
 COPY . .
